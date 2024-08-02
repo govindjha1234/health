@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap Bundle JS (includes Popper) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
+
+  <title>Aviva Health Kiosk</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: sans-serif !important;
+    }
+
+    .container {
+      max-width: 1080px;
+      max-height: 1920px;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    #myVideo {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    .div_2 {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .card_div_1 {
+      width: 87vw;
+      height: 28vh;
+      position: absolute;
+      top: 31%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border: 1px solid;
+    }
+
+    .card_div_1 #myVideo1,
+    #myVideo2 {
+      object-fit: cover;
+      width: 100%;
+      height: 28vh;
+    }
+
+    .heading {
+      width: 90vw;
+      position: absolute;
+      top: 15vh;
+    }
+
+    .Aviva {
+      font-size: 1.7rem;
+      font-weight: 400;
+      text-align: center;
+      font-family: "Source Sans Pro";
+    }
+
+    #scanButton {
+      width: 44vw;
+      height: 7vh;
+      color: #1655A6;
+      top: 67%;
+      border-radius: 20px;
+      background: #ffd900;
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 500;
+      position: absolute;
+      padding: 0 !important;
+    }
+
+    .div2BottomImg {
+      width: 100vw;
+      height: 20vh;
+      position: absolute;
+      bottom: 0%;
+    }
+
+    .heart {
+      width: 15vw;
+      height: 10.5vh;
+      position: absolute;
+      top: 10%;
+      object-fit: contain;
+    }
+
+    .dot {
+      height: 20px;
+      width: 20px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+      text-align: center;
+    }
+
+    #startScanIns {
+      position: absolute;
+      top: 61%;
+    }
+
+    #mySlides {
+      width: 100%;
+      height: 100%;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+    .div_3 {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden !important;
+    }
+
+    #camraInstruction {
+      color: #FFFFFF;
+      font-size: 2vh;
+      font-weight: 300;
+    }
+
+    .camraFrame {
+      width: 60.5vw;
+      height: 60.5vw;
+      border-radius: 50%;
+      border: 7px dashed #FFFFFF;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background: plum;
+      overflow: hidden !important;
+      position: absolute;
+      top: 20%;
+    }
+
+    .camraFrame #videoElement {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .startButton {
+      width: 10vw;
+      height: 7vh;
+      font-size: large;
+      border: 5px solid white;
+      background: #5ca945;
+    }
+
+    #startCamraIns1 {
+      font-size: 2rem;
+      font-weight: 500;
+      font-family: "poppins";
+      text-align: center;
+      color: #ffffff;
+      position: absolute;
+      bottom: 10%;
+    }
+
+    .heart_img {
+      width: 15vw;
+      height: 10.5vh;
+    }
+
+    .div_4 {
+      height: 100vh;
+      align-items: center;
+    }
+
+    .div4_form {
+      width: 55vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .div4_form input {
+      width: 71vw;
+      height: 6vh;
+      border-radius: 8px;
+      border: 1px solid #8E8E8E;
+    }
+
+    #div4_next_btn,
+    #div6_next_btn,
+    #div7_next_btn,
+    #div5_ft-btn {
+      width: 44vw;
+      height: 7vh;
+      border-radius: 10px;
+      background: #ffd900;
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 500;
+      color: #1655A6;
+      margin-top: 20px;
+      padding: 0;
+    }
+
+    #div7-next-btn1 {
+      width: 31vw;
+      height: 4vh;
+      font-size: 1.75vh;
+      margin-top: 1.75vh !important;
+      border: none;
+      outline: none;
+      color: #1655A6;
+      background-color: #ffd900;
+      border-radius: 1vw;
+      font-weight: 500;
+    }
+
+    input[type="number"] {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .div_5 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .aviva4_navigation {
+      margin-top: 4vh;
+      display: flex;
+      justify-content: space-between;
+      width: 10vw;
+      gap: 1vw;
+    }
+
+    .aviva4_dot {
+      background-color: #0E586C;
+      height: 1vh;
+      width: 1.6vw;
+      border-radius: 10px;
+      opacity: 10%;
+    }
+
+    .aviva4_dot .aviva4_dark {
+      height: 1.5vh;
+      width: 4vw;
+      opacity: 50%;
+    }
+
+    .div_6 {
+      height: 100vh;
+    }
+
+    .gender-selection {
+      display: flex;
+      justify-content: center;
+    }
+
+    .gender-option {
+      margin: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gender-icon {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+    }
+
+    .checkmark {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      position: absolute;
+      top: 1vh;
+      right: 1vw;
+      display: none;
+    }
+
+    .selected .gender-icon {
+      border-color: #00B238;
+    }
+
+    .selected .checkmark {
+      display: block;
+    }
+
+    .div_7 {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .div_8 {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .div_13 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .div_14 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .div_10 {
+      height: 100vh;
+      /* overflow: hidden; */
+    }
+
+    .div_12 .div_13 .div_16 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .div_11 {
+      height: 100vh;
+      position: relative;
+    }
+
+    #row {
+      width: 100vw;
+      height: 30vh;
+      background-color: #0E586C;
+      margin-bottom: 2.5rem;
+    }
+
+    .card1 {
+      width: 80vw;
+      height: 19vh;
+      background-color: #ffffff;
+    }
+
+    .report_card {
+      width: calc(50vw - 10vw);
+      margin: 0vw 4vw;
+      height: 15vh;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      /* background-color: #b32929; */
+    }
+
+    /*  report card timeline css */
+    .timeline {
+      width: 95%;
+      padding: 0 10px;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .progress1 {
+      display: flex;
+      height: 2px;
+      background-color: white;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .progress1-bar1 {
+      height: 3px;
+      flex: 1;
+      margin-right: 1rem;
+    }
+
+    .progress1-bar1:last-child {
+      margin-right: 0;
+    }
+
+    .progress1-bar1 bg-info low {
+      background-color: lightblue;
+    }
+
+    .progress1-bar1 bg-success optimal {
+      background-color: yellowgreen;
+    }
+
+    .progress1-bar1 bg-warning overweight {
+      background-color: darkgreen;
+    }
+
+    .progress1-bar1 bg-danger obese {
+      background-color: orangered;
+    }
+
+    .labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      color: black;
+      font-size: 6px !important;
+    }
+
+    .label1 {
+      width: calc(25% - 0.75rem);
+      text-align: center;
+    }
+
+    .indicator {
+      position: absolute;
+      top: 0px;
+      width: 15px;
+      height: 15px;
+      background-color: white;
+      border: 2px solid green;
+      border-radius: 50%;
+      z-index: 3;
+      transform: translate(-50%, -50%);
+      transition: left 0.3s ease-in-out;
+    }
+
+    .percentage {
+      position: absolute;
+      top: calc(50% - 28px);
+      transform: translateX(-50%);
+      font-size: 10px;
+    }
+
+    .percentage-1 {
+      left: 25%;
+    }
+
+    .percentage-2 {
+      left: 50%;
+    }
+
+    .percentage-3 {
+      left: 75%;
+    }
+
+
+
+    #div_8_row2 {
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 0px;
+      /* padding-top: 2rem; */
+    }
+
+    .card-title1 {
+      width: 22vw;
+      height: 3vh;
+      background: gray;
+      align-items: center;
+      margin-left: 5rem;
+    }
+
+    .mt-6 {
+      margin-top: 10vh !important;
+    }
+
+    #gift_bottom_img {
+      position: absolute;
+      bottom: 0;
+      width: 100vw;
+      height: 25vh;
+      object-fit: contain;
+    }
+
+    .div_8 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .div_9 {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottom_progress_bar {
+      width: 100vw;
+      height: 7vh;
+      background-color: #0E586C;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .progress-bar {
+      height: 5%;
+      display: block;
+      background-color: #FFD900;
+      /* Change the color of the progress bar */
+    }
+
+    .gift_btn {
+      width: 25vw;
+      height: 3vh;
+      border-radius: 5px;
+      background: #ffd900;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+      color: #1655A6;
+      padding: 0;
+    }
+
+    #div_8_form_btn {
+      width: 25vw;
+      height: 4vh;
+      border-radius: 10px;
+      background: #ffd900;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+      color: #1655A6;
+      padding: 0;
+    }
+
+    .aviva-18_mt-6 {
+      margin-top: 17vh;
+    }
+
+    .mt-8 {
+      margin-top: 8vw;
+    }
+
+    #bottomImg {
+      width: 100vw;
+      position: absolute;
+      bottom: 0;
+
+    }
+
+    .mt-6 {
+      margin-top: 5vh;
+    }
+
+    .dietCard {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 2vw;
+      height: 17vh;
+      width: 37vw;
+      margin-top: 1.5vh;
+    }
+
+    .dietCard img {
+      max-width: 100%;
+      max-height: 70%;
+      margin-bottom: 2vh;
+    }
+
+    #card-body-text {
+      color: rgba(14, 88, 108, 1);
+      font-size: 2.5vw;
+      font-weight: 500;
+    }
+
+    .report_Card_row1 {
+      height: 85vh;
+    }
+
+    .div_14 {
+      height: 100vh;
+      position: relative;
+    }
+
+    .form-container {
+      width: 80vw;
+      max-width: 70%;
+
+    }
+
+    .form-control {
+      width: 70%;
+    }
+
+    .form_label {
+      padding-right: 0 !important;
+      /* color: #0E586C; */
+      font-size: 1.75vh;
+      font-weight: 500;
+    }
+
+    /*  circle annimation css part */
+    .circle-container {
+
+      bottom: 0vh;
+      z-index: 0;
+    }
+
+    .dashed-circle-progress {
+      width: 450px;
+      height: 450px;
+      position: relative;
+      top: 40vh;
+    }
+
+    .firstCircleBar {
+      position: relative;
+      top: 0vh;
+    }
+
+    .div_9_circle {
+      position: relative;
+      top: 14vh;
+    }
+
+    .circle-text {
+      text-anchor: middle;
+      font-size: 2.5rem;
+      color: white;
+      position: absolute;
+      top: 30%;
+      left: 24%;
+    }
+
+    .progress {
+      stroke-dasharray: 296 296;
+      stroke-dashoffset: 296;
+      animation: grow 5s ease-out infinite;
+    }
+
+    .progress-radial {
+      margin-left: 3vh;
+    }
+
+    @keyframes grow {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .slideshow-container {
+      position: relative;
+    }
+
+    .mySlides {
+      text-align: center;
+    }
+
+    .author {
+      color: #ffd900;
+      text-align: center;
+    }
+
+    .calculating_text {
+      font-weight: 600; 
+     }
+    .blink {
+       animation: blink 1.4s infinite both;
+    }
+    .blink:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .blink:nth-child(3) {
+     animation-delay: 0.4s;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+    #delayedForm {
+      display: none;
+      animation: fadeInZoom 1s ease forwards;
+      background-color: #f0e086;
+      border: 2px solid #FFD900;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      position: absolute;
+      top: 22vh;
+      z-index: 998;
+    }
+
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-backdrop {
+      filter: blur(4px);
+    }
+
+    .top_branding {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      height: 8vh;
+      top: 0;
+      background: #ffd900;
+      width: 100vw;
+    }
+
+    .logo {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .active {
+      background-color: transparent;
+    }
+
+    #iframe_Scanner {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #modal {
+        display: none; 
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7); 
+    }
+    .error_model_box {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 8px;
+        height: 20%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #modal-body {
+    margin-bottom: 20px;
+    }
+    #close-modal-button {
+    background-color: #ffd900;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    #close-modal-button:hover {
+    background-color: #bba319;
+    }
+    .blur {
+      filter: blur(5px);
+      pointer-events: none;
+    } 
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="div_2" id="div_2">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100" style="position: absolute; right: 0; top: 0;">
+        <h2 style="font-size: 1.8rem; font-weight: 600;  text-align: center;">Digital Bharat Swasthya Kendra
+        </h2>
+      </div>
+      <div class="heading">
+        <p class="Aviva">Great! Lets measure your health vitals!</p>
+        <p class="Aviva" style="padding-left: 1rem; font-size: 1rem;">
+          <img src="https://static.virtubox.io/project/file/20240506-130553-zwso-frame-10666.png" alt="" width="30px">
+          Follow instructions before taking test.
+        </p>
+      </div>
+      <div class="card card_div_1">
+        <div class="mySlides ">
+          <video autoplay muted loop id="myVideo1">
+            <source src="https://static.virtubox.io/project/file/20240310-105356-2jqy-videoplayback-29.webm"
+              type="video/webm">
+          </video>
+        </div>
+      </div>
+      <button class="btn" id="scanButton" onclick="randomScanId()">Next</button>
+      <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" class="div2BottomImg" />
+    </div>
+    <div class=" div_3 bg-dark " id="div_3" style="display: none;">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+
+      <button type="button" id="startCamraIns" class="my-4  btn btn-primary "
+        style="position: absolute; top: 90%; right: 5%; display: none;">next</button>
+
+      <iframe id="iframe_Scanner" allow="camera; microphone" style="width: 100vw; height: 100vh;"></iframe>
+    </div>
+    <div class=" div_4 d-none flex-column w-100 vh-100 justify-content-center  align-item-center" id="div_4"
+      style="display: none;">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100" style="right: 50px !important;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; text-align: center; margin-bottom: 0;">DIGITAL BHARAT<br>
+          SWASTHYA KENDRA</h2>
+      </div>
+
+      <p class="d-flex"
+        style="font-size: 2vh;font-weight: 400;text-align: center; margin-top: 1.5vh;line-height: 2.35vh; position: absolute; top: 15vh;">
+        Enter your details to compute health parameters</p>
+      <img src="https://static.virtubox.io/project/file/20240308-061044-ybcv-slide-4-png.png" alt=""
+        class="img-responsive" style="width: 60vw; margin-top: 1vh; ">
+      <h1 style="text-align: center; font-size: 2.8vh; font-weight: 600; color: #0E586C; " class="mt-4 fw-bolder"> Bone
+        mass peaks between <br> the age of <span style="color: #ffd900;">25</span> and <span
+          style="color: #ffd900;">30</span> and slowly <br> reduces by age 40</h1>
+
+      <div class="div4_form my-3">
+        <p style="font-size: 2.8vh;color:rgba(68, 68, 68, 1); font-weight: 700;">Whats your age?</p>
+        <input type="number" id="age" name="age" placeholder="Enter Here"
+          style="font-weight: 700; height: 4.5vh; width: 48vw;" class="text-center my-4">
+      </div>
+
+      <button class="btn btn-primary my-2" id="div4_next_btn"
+        style="border: none; width: 46vw; height: 5.75vh; font-size: 2.15vh; ">Next</button>
+      <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" class="div2BottomImg" />
+
+    </div>
+    <div class="div_5 d-none flex-column justify-content-center align-items-center" id="div_5">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <div class="aviva4_main d-flex flex-row justify-content-center align-items-center my-2"
+        style="position: absolute; top: 15vh;">
+        <img src="https://static.virtubox.io/project/file/20240312-071820-wurq-untitled-pngboyheight197x428.png"
+          alt="a boy" style="width: 20vw; height: 50vw;">
+        <p style="font-size: 2.8vh; font-weight: 650; color: #0E586C; margin-left: 8vw; line-height: 3.75vh;">
+          Studies suggest <span style="color: #ffd900;">taller <br> people</span>
+          may have <span style="color: #ffd900;">lower <br> risk</span> of <span style="color: #ffd900;">
+            heart</span> disease <br> and stroke
+        </p>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top: 22vh;">
+        <p style="font-size: 3vh; font-weight: 700; color: rgba(68, 68, 68, 1); margin-top: 3vh;">How tall are you?</p>
+        <div id="ft-in">
+          <div class="mt-4" style="display: flex; align-items: center;">
+            <div style="width: 35vw; border: 0.5px solid black; border-radius: 0.5vw; margin: 0;">
+              <div class="row py-2 px-3" id="div-ft-in">
+                <div class="col-6 align-item-center">
+                  <input type="number" id="ft"
+                    style="width: 4vh; height: 4vh; background-color: rgba(241, 241, 241, 1); border: 2px solid gray;">
+                  <label for="ft" style="font-size: 2vh;">ft</label>
+                </div>
+                <div class="col-6 align-item-center">
+                  <input type="number" id="in"
+                    style="width: 4vh; height: 4vh; background-color: rgba(241, 241, 241, 1); border: 2px solid gray;">
+                  <label for="in" style="font-size: 2vh;">in</label>
+                </div>
+              </div>
+              <div class="row py-2 px-3" style="height: 100%; display: none;" id="div-cm">
+                <div class="col-12 align-item-center">
+                  <input type="number" id="cm"
+                    style="width: 11vh; height: 4vh; background-color: rgba(241, 241, 241, 1); border: 2px solid gray;">
+                  <label for="cm" style="font-size: 2vh;">cm</label>
+                </div>
+              </div>
+            </div>
+            <div style="width: 6vh;">
+              <div class="w-100">
+                <button id="btn-ft-in" class="w-100 p-1" style="background-color: rgb(255, 255, 255);">ft in</button>
+              </div>
+              <div class="w-100">
+                <button id="btn-cm" class="w-100 p-1" style="background-color: rgb(255, 255, 255);">cm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="my-1" id="div5_ft-btn"
+          style="width: 46vw; height: 5.75vh; font-size: 2.15vh; margin-top: 5vh !important; border: none;">Next</button>
+        <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" class="div2BottomImg" />
+      </div>
+    </div>
+    <div class=" div_6 d-none  align-items-center justify-content-center  flex-column " id="div_6">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600; ">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <h3 style="font-size: 2.5vh; font-weight: 600; color: #0E586C; position: absolute; top: 15vh;">Indian women
+        <span style="color: #ffd900;"> outlive</span> men
+        by<span style="color: #ffd900;"> 3.1</span> years
+      </h3>
+      <div class="gender-selection my-5" style="    margin-top: 4vh !important;">
+        <div class="gender-option d-flex align-items-center flex-column" id="male" onclick="selectGender('male')">
+          <img src="https://static.virtubox.io/project/file/20240310-124927-g899-ellipse-18.png" alt="Male"
+            class="gender-icon" style="    height: 25vw; width: 25vw;">
+          <img src="https://static.virtubox.io/project/file/20240310-131111-qjqk-check-2.png" alt="Checkmark"
+            class="checkmark">
+          <span style="font-size: 2vh; font-weight: 600;">Male</span>
+        </div>
+        <div class="gender-option d-flex align-items-center flex-column" id="female" onclick="selectGender('female')">
+          <img src="https://static.virtubox.io/project/file/20240310-124842-dj65-ellipse-19.png" alt="Female"
+            class="gender-icon" style="    height: 25vw; width: 25vw;">
+          <img src="https://static.virtubox.io/project/file/20240310-131111-qjqk-check-2.png" alt="Checkmark"
+            class="checkmark">
+          <span style="font-size: 2vh; font-weight: 600;"> Female</span>
+        </div>
+      </div>
+      <p class="my-3" style="font-size: 2.4vh; font-weight: 600; margin-top: 4vh !important; ">Whats your
+        Gender?</p>
+      <button class="btn btn-primary my-5" id="div6_next_btn"
+        style="   width: 46vw; height: 5.75vh; font-size: 2.15vh;  margin-top: 5vh !important; border: none;">Next</button>
+      <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" class="div2BottomImg" />
+    </div>
+    <div class=" div_7 d-none justify-content-center align-items-center flex-column position-relative" id="div_7">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <div class="circle-container">
+        <div class="dashed-circle-progress firstCircleBar">
+          <svg class="progress-radial" width="100%" height="100%" viewBox="0 0 120 120"
+            shape-rendering="geometricPrecision">
+            <defs>
+              <mask class="circle-mask" x="0" y="0" width="100" height="100" maskUnits="userSpaceOnUse">
+                <circle cx="50" cy="50" r="51" stroke-width="0" fill="black" opacity="1" />
+                <circle class="bar" r="50" cx="50" cy="50" fill="transparent" stroke-dasharray="1"
+                  stroke-dashoffset="1000" stroke="white" stroke-width="9"></circle>
+                <circle class="progress-radial-mask-inner" cx="50" cy="50" r="40" stroke-width="4" fill="#ffd900"
+                  opacity="1" />
+              </mask>
+            </defs>
+            <g>
+              <circle class="progress-radial-track" cx="50" cy="50" r="50" opacity="1" fill="#0E586C" />
+              <circle class="progress-radial-outer progress" cx="50" cy="50" r="47" fill="none" stroke="#ffd900"
+                stroke-width="6"></circle>
+            </g>
+            <div class="circle-text">
+              <p class="calculating_text">
+                Calculating<span class="blink">.</span><span class="blink">.</span><span class="blink">.</span>
+              </p>
+              <div class="textCarousel carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">BMI</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Sugar</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Heart Rate</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Stress Level</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </svg>
+        </div>
+      </div>
+      <div class="bottom_progress_bar d-flex justify-content-center  flex-column" id="div7-next-btn2">
+        <span class="progress-bar my-2 mt-2" style="width: 50%; align-items: center;"></span>
+        <p style="font-size: 1rem;" class="my-2 text-light text-center">Your health scan is 50% completed
+        </p>
+      </div>
+
+
+    </div>
+    <div class=" div_8 d-none  align-items-center flex-column  " id="div_8">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+
+      <p class=" "
+        style="font-size: 1.9vh; font-weight: 400; margin-top: 13vh; text-align: center; line-height: 2.35vh;">
+        Unlock your report now! Share your details <br> and get your report delivered to your phone!</p>
+      <div id="delayedForm" class="form-container">
+        <form style="padding-left: 4rem; padding-top: 2rem;">
+          <div class="form-group row">
+            <label for="inputName" class="col-4 col-form-label form_label">Name<span
+                style="color: red;">*</span></label>
+            <div class="col-8">
+              <input type="text" class="form-control" id="inputName" placeholder="Name"
+                style=" border-radius: 0.5vw; box-shadow: 0px 2px 4px rgb(70, 69, 69);">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputMobile" class="col-4 col-form-label form_label">Mobile No<span
+                style="color: red;">*</span></label>
+            <div class="col-8">
+              <input type="number" class="form-control" id="inputMobile" oninput="validateMobile(this.value)"
+                placeholder="Enter 10-digit number"
+                style=" border-radius: 0.5vw; box-shadow: 0px 2px 4px rgb(70, 69, 69); margin-bottom: 2rem;" min="0"
+                max="9999999999">
+              <span id="tick" class="valid"
+                style="position: absolute; top: 15%; left: 61%; display: none;">&#10004;</span>
+              <!-- Tick mark icon -->
+            </div>
+            <small class="alert alert-success" id="otpMessage" style="display: none; margin: auto;">
+              Please enter the OTP sent on your mobile number
+            </small>
+          </div>
+          <div class="form-group row">
+            <label for="inputOTP" class="col-4 col-form-label form_label">OTP<span style="color: red;">*</span></label>
+            <div class="col-8">
+              <input type="number" class="form-control" id="inputOTP" placeholder="OTP"
+                style=" border-radius: 0.5vw; box-shadow: 0px 2px 4px rgb(70, 69, 69);"
+                oninput="validateOtp(this.value)" min="0" max="9999">
+            </div>
+            <div class="alert alert-danger" id="otpAlertMessage" style="display: none; margin: auto;">
+              Incorrect input. Pls enter correct OTP sent to you.
+            </div>
+          </div>
+        </form>
+        <div class="col-12 d-flex justify-content-center" style="padding-left: 0 !important;">
+          <button class="btn btn-primary my-5" id="div7-next-btn1" type="button" onclick="submitForm()">Submit</button>
+        </div>
+      </div>
+      <div class="circle-container">
+        <div class="dashed-circle-progress">
+          <svg class="progress-radial" width="100%" height="100%" viewBox="0 0 120 120"
+            shape-rendering="geometricPrecision">
+            <defs>
+              <mask class="circle-mask" x="0" y="0" width="100" height="100" maskUnits="userSpaceOnUse">
+                <circle cx="50" cy="50" r="51" stroke-width="0" fill="black" opacity="1" />
+                <circle class="bar" r="50" cx="50" cy="50" fill="transparent" stroke-dasharray="1"
+                  stroke-dashoffset="1000" stroke="white" stroke-width="9"></circle>
+                <circle class="progress-radial-mask-inner" cx="50" cy="50" r="40" stroke-width="4" fill="#ffd900"
+                  opacity="1" />
+              </mask>
+            </defs>
+            <g>
+              <circle class="progress-radial-track" cx="50" cy="50" r="50" opacity="1" fill="#0E586C" />
+              <circle class="progress-radial-outer progress" cx="50" cy="50" r="47" fill="none" stroke="#ffd900"
+                stroke-width="6"></circle>
+            </g>
+            <div class="circle-text">
+              <p class="calculating_text">
+                Calculating<span class="blink">.</span><span class="blink">.</span><span class="blink">.</span>
+              </p>
+                <div class="textCarousel carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">BMI</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Sugar</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Heart Rate</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Stress Level</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </svg>
+        </div>
+
+      </div>
+      <div class="bottom_progress_bar d-flex justify-content-center  flex-column" id="div7-next-btn2">
+        <span class="progress-bar my-2 mt-2" style="width: 100%; align-items: center;"></span>
+        <p style="font-size: 1rem;" class="my-2 text-light text-center">Your health scan is 100% completed
+        </p>
+      </div>
+
+    </div>
+    <div class=" div_9 d-none  align-items-center flex-column position-relative " id="div_9" style="overflow: hidden;">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600; ">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <p class=" "
+        style="font-size: 2.25vh; font-weight: 650; text-align: center; color: rgba(68, 68, 68, 1); line-height: 2.75vh; margin-top: 20vh;">
+        We’re processing your health <br> stats. Stay tuned for your <br> personalized insights</p>
+      <div class="circle-container">
+        <div class="dashed-circle-progress div_9_circle">
+          <svg class="progress-radial" width="100%" height="100%" viewBox="0 0 120 120"
+            shape-rendering="geometricPrecision">
+            <defs>
+              <mask class="circle-mask" x="0" y="0" width="100" height="100" maskUnits="userSpaceOnUse">
+                <circle cx="50" cy="50" r="51" stroke-width="0" fill="black" opacity="1" />
+                <circle class="bar" r="50" cx="50" cy="50" fill="transparent" stroke-dasharray="1"
+                  stroke-dashoffset="1000" stroke="white" stroke-width="9"></circle>
+                <circle class="progress-radial-mask-inner" cx="50" cy="50" r="40" stroke-width="4" fill="#ffd900"
+                  opacity="1" />
+              </mask>
+            </defs>
+            <g>
+              <circle class="progress-radial-track" cx="50" cy="50" r="50" opacity="1" fill="#0E586C" />
+              <circle class="progress-radial-outer progress" cx="50" cy="50" r="47" fill="none" stroke="#ffd900"
+                stroke-width="6"></circle>
+            </g>
+            <div class="circle-text">
+              <p class="calculating_text">
+                Calculating<span class="blink">.</span><span class="blink">.</span><span class="blink">.</span>
+              </p>             
+               <div class="textCarousel carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">BMI</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Sugar</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Heart Rate</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="author">Stress Level</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </svg>
+        </div>
+
+      </div>
+      <div class="bottom_progress_bar d-flex justify-content-center  flex-column" id="div7-next-btn2">
+        <span class="progress-bar my-2 mt-2" style="width: 100%; align-items: center;"></span>
+        <p style="font-size: 1rem;" class="my-2 text-light text-center">Your health scan is 100% completed
+        </p>
+      </div>
+    </div>
+    <div class="div_10 d-none align-items-center flex-column" id="div_10">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600; ">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <h2 style="margin-top: 10vh; font-weight: 600;">VITAL SUMMARY REPORT</h2>
+      <p style="text-align: center; ">Your report covering these and additional 16 health vitals<br> has been
+        sent to your registered mobile number</p>
+      <div class="row  report_Card_row1  " id="div_8_row2">
+        <div class="card report_card" id="weight_card">
+          <div class="card-header weight_card_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Weight
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-102205-loqu-weight-loss-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="weight">80Kg</h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-1">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Optimal</div>
+                  <div class="label1">Overweight</div>
+                  <div class="label1">Obese</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card" id="bmi_card">
+          <div class="card-header bmi_card_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">BMI
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-110119-quvd-bmi-1-2.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="BMI">100 mg/dl</h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Thin</div>
+                  <div class="label1">Standard</div>
+                  <div class="label1">Overweight</div>
+                  <div class="label1">Obesity</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card" id="body_fat_card">
+          <div class="card-header body_fat_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Body Fat
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-110222-h7o7-fat-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="body_fat">30%</h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Ideal</div>
+                  <div class="label1">High</div>
+                  <div class="label1">High</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card" id="muscle_mass_card">
+          <div class="card-header muscle_mass_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Bone
+              mass
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-110309-hyvb-muscle-mass-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="mass_value">70%
+              </h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Optimal</div>
+                  <div class="label1">Overweight</div>
+                  <div class="label1">Obese</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card " id="metabolic_card">
+          <div class="card-header metabolic_age_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">
+              Metabolic Age
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-110357-pcne-age-range-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="metabolic_age">50
+
+              </h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Optimal</div>
+                  <div class="label1">Overweight</div>
+                  <div class="label1">Obese</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card" id="rbs_level_card">
+          <div class="card-header blood_pressure_card_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Blood Pressure</h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-101014-lzc7-diabetes-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="rdm_blood-sugar">70
+                </h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Optimal</div>
+                  <div class="label1">Overweight</div>
+                  <div class="label1">Obese</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card " id="stress_level_card">
+          <div class="card-header stress_card_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Stress
+              Level
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-110629-b1tf-brain-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " class="text-center my-2 card-text" id="stress_level">Low
+              </h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <!-- <div class="percentage percentage-1">25.00%</div>
+                <div class="percentage percentage-2">50.00%</div>
+                <div class="percentage percentage-3">75.00%</div> -->
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Mild</div>
+                  <div class="label1">Moderate</div>
+                  <div class="label1">High</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card report_card" id="heart_rate_card">
+          <div class="card-header heart_rate_card_header"></div>
+          <div class="card-body " style="padding: 0.25rem !important;">
+            <h1 style="font-size: 1.2rem; font-weight: 600;  " class="text-center  card-title my-2">Heart
+              Rate
+            </h1>
+            <div class="d-flex  align-item-center justify-content-center " style="gap: 1rem;">
+              <img src="https://static.virtubox.io/project/file/20240315-101416-zswo-heart-rate-1.png" alt="">
+              <h1 style="font-size: 2rem; font-weight: 600; " id="heart_rate_value" class="text-center my-2 card-text">
+              </h1>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mt-3">
+              <div class="timeline">
+                <div class="progress1">
+                  <div class="progress1-bar1 bg-info low"></div>
+                  <div class="progress1-bar1 bg-success optimal"></div>
+                  <div class="progress1-bar1 bg-warning overweight"></div>
+                  <div class="progress1-bar1 bg-danger obese"></div>
+                </div>
+                <div class="indicator"></div>
+                <div class="percentage percentage-1">25</div>
+                <div class="percentage percentage-2">50</div>
+                <div class="percentage percentage-3">75</div>
+                <div class="labels">
+                  <div class="label1">Low</div>
+                  <div class="label1">Normal</div>
+                  <div class="label1">Elevated</div>
+                  <div class="label1">High</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex report_Card_row2 ">
+          <div class="col-5 d-flex justify-content-center align-items-center">
+            <img style="max-width: 100%; width: 50%;" class="img-responsive"
+              src="https://static.virtubox.io/project/file/20240313-092029-xd5g-img_1799.gif" alt="">
+          </div>
+          <div class="col-7 d-flex justify-content-center flex-column "
+            style="padding-left: 2rem; padding-right: 2rem;">
+            <p style="font-size: 1.5vh; font-weight: 400; color: #0E586C; ">
+              <span style="font-size: 1.8vh;">Congratulations! <small id="user_name"></small></span> <br>
+              FREE GIFT to boost your well being.
+            </p>
+            <button class="btn gift_btn" id="claim_gift_btn" onclick=" openModal()">CLAIM GIFT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div_11 d-none flex-column align-items-center " id="div_11" style="position: relative; padding: 2rem;">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade centered model-backdrop " id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 0;">
+          <div class="modal-content"
+            style="width: 90vw; margin: 5vw; border-radius: 15px; height: 45vh; margin-top: 22vh;">
+            <div class="modal-body"
+              style="    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                style="font-size: 2rem; position: absolute; top: 0%; right: 1%; font-size: 3rem;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="headerContent d-flex justify-content-center align-item-center"
+                style="background: #ffd900; margin-top: 2vh; border-radius: 10px;">
+                <img src="https://static.virtubox.io/project/file/20240312-112005-vnjn-slide-16-png.png" alt="" class=""
+                  style="width: 25vw;">
+                <h2 class="text-center fw-bold  "
+                  style="  color: rgba(68, 68, 68, 1); font-weight: 500; margin: 0; display: flex; justify-content: center; align-items: center;">
+                  FREE subscription of customized AI DIET PLANNER for 1 month Is shared with you
+                </h2>
+              </div> -
+            </div>
+            <div class="model-footer">
+              <img src="https://static.virtubox.io/project/file/20240311-094845-hngj-slide-16-b-img.png" alt=""
+                id="gift_bottom_img">
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3
+        style="text-align: center; margin-top: 15vh; margin-bottom: 2rem; font-size: 2.2vh; font-weight: 600; color: #0E586C; ">
+        Want More? <br> Enhance your
+        <span style="color: #ffd900;">protection </span>with <span style="color: #ffd900;">Aviva</span> Signature 3D
+        Term
+        Plan that covers you against - <span style="color: #ffd900;">death, disease </span> & <span
+          style="color: #ffd900;">disability </span> and get
+      </h3>
+      <div class="productOffer" style="margin-bottom: 2rem; margin-top: 4vh;">
+        <h4 style="text-align: center; ">Plans starting from Rs. 120 only*</h4>
+        <img src="https://static.virtubox.io/project/file/20240427-103505-bdq8-icon.png" alt=""
+          style="margin-top: 4vh; margin-bottom: 4vh;">
+      </div>
+      <button class="btn btn-primary  mt-2 fw-bolder text-center" id="want_more-btn"
+        style="width: 40vw; height: 4.5vh; background-color: rgba(255, 217, 0, 1); color: black; border-radius: 2vw; font-size: 4vw; margin-bottom: 1vh;">Yes,
+        I am Interested
+      </button>
+      <div class="mt-2" style="font-size: 1.5vh; color: rgba(68, 68, 68, 1);" id="No_thanks">I need more time to
+        think
+        <hr style="margin: 0;">
+        <p style="text-align: center;">*T&C Apply</p>
+      </div>
+      <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" class="div2BottomImg" />
+    </div>
+
+    <div class=" div_13 d-none flex-column  align-items-center  position-relative " id="div_13">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600; ">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <div class="  text-center feedback_text" style="font-size: 2.2vh; margin-top: 15vh; margin-bottom: 4vh;">Rate your
+        experience.
+        Your feedback helps us <br> improve and serve you better.
+      </div>
+      <div class="row mt-5 " style="width: 100vw; " id="feedback">
+        <div class="col-1"></div>
+        <img src="https://static.virtubox.io/project/file/20240314-110004-2kgr-emoji-01.png" class="col-2" alt=""
+          style="width: 15vw; object-fit: contain;">
+        <img src="https://static.virtubox.io/project/file/20240314-110033-xmra-emoji-02.png" class="col-2" alt=""
+          style="width: 15vw; object-fit: contain;">
+        <img src="https://static.virtubox.io/project/file/20240314-110104-hwve-emoji-03.png" class="col-2" alt=""
+          style="width: 15vw; object-fit: contain;">
+        <img src="https://static.virtubox.io/project/file/20240314-110132-e80t-emoji-04.png" class="col-2" alt=""
+          style="width: 15vw; object-fit: contain;">
+        <img src="https://static.virtubox.io/project/file/20240314-110155-smkc-emoji-05.png" cnlass="col-2" alt=""
+          style="width: 15vw; ">
+        <div class="col-1"></div>
+        <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" id="bottomImg" alt="">
+      </div>
+    </div>
+    <div class=" div_14 d-none flex-column align-items-center  " id="div_14" style="padding: 2rem; padding-top: 0;">
+      <div class="top_branding">
+        <img src="https://static.virtubox.io/project/file/20240429-063239-d1rj-aviva-logo.png" alt="" class="logo"
+          width="100" height="100">
+        <h2 style="font-size: 1.8rem; font-weight: 600;">Digital Bharat Swasthya Kendra</h2>
+      </div>
+      <p style="font-size: 3.5vh;font-weight: 700; color: #0E586C; margin-top: 15vh; margin-bottom: 4vh; ">Thank You</p>
+      <p class="text-center"
+        style="font-size: 2.2vh; font-weight: 600;  color: #0E586C; margin-bottom: 4vh !important;  ">Continue to build
+        <span style="color: #ffd900;">healthy</span> habits by joining our <span style="color: #ffd900;">FREE</span>
+        Yoga & Meditation session. <span style="color: #ffd900;"> Scan to join.</span>
+      </p>
+      <img src="https://static.virtubox.io/project/file/20240509-053713-87cq-image.png" alt="" style="width: 40vw;">
+      <img src="https://static.virtubox.io/project/file/20240423-104917-6kiq-frame-47.png" alt="" style="width: 50vw;">
+      <div>
+        <img src="https://static.virtubox.io/project/file/20240307-074925-tf5w-aviva-png.png" id="bottomImg1" alt=""
+          style="width: 100vw; position: absolute; bottom: 0; left: 0;">
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content error_model_box" id="modal-content">
+        <div class="modal-body" id="moddel-body">
+          <h2 style="text-align: center;">Alert</h2>
+          <p id="model-body-content" style="text-align: center; "></p>
+        </div>
+        <button class="close-modal-button" id="close-modal-button">Close</button>
+      </div>
+  </div>
+  </div>
+  <script>
+    let user_age;
+    let user_height;
+    let user_gender;
+    let user_name;
+    let user_mobile;
+    let user;
+    let scanId = '';
+    let vitalReport = '';
+    let trackData = '';
+    let smart_scale_data;
+    let intervalId;
+    let intervalId1;
+    let stressCardEl = document.getElementById("stress_level_card");
+    let rbsCardEl = document.getElementById("rbs_level_card");
+    let heartRateCardEl = document.getElementById("heart_rate_card");
+    let weightCardEl = document.getElementById("weight_card");
+    let bmiCardEl = document.getElementById("bmi_card");
+    let bodyFatCardEl = document.getElementById("body_fat_card");
+    let boneMassCardEl = document.getElementById("muscle_mass_card");
+    let metabolicAgeCard = document.getElementById("metabolic_card");
+    function getColorCode(classification) {
+      const colorMap = {
+        "Underweight": "#17a2b8", // bg-info
+        "Normal weight": "#28a745", // bg-success
+        "Overweight": "#ffc107", // bg-warning
+        "Obese": "#dc3545", // bg-danger
+        "Thin": "#17a2b8", // bg-info
+        "Standard": "#28a745", // bg-success
+        "Obesity": "#dc3545", // bg-danger
+        "Low": "#17a2b8", // bg-info 
+        "Normal": "#28a745", // bg-success
+        "Elevated": "#ffc107", // bg-warning
+        "High": "#dc3545" // bg-danger
+      };
+      return colorMap[classification] || "bg-warning"; // default to warning color if classification is not found
+}
+    document.getElementById("scanButton").addEventListener("click", function () {
+      document.getElementById("div_2").style.display = "none";
+      document.getElementById("div_3").style.display = "flex";
+      makeWebAppUrl();
+      resetUserData();
+      // send()
+    });
+
+    document.getElementById("div4_next_btn").addEventListener("click", function () {
+      user_age = document.getElementById('age').value.trim();
+      console.log(user_age);
+      if (user_age) {
+        document.getElementById("div_4").classList.remove("d-flex");
+        document.getElementById("div_5").classList.add("d-flex");
+      } else {
+        alert("Please fill your age");
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const btnFtIn = document.getElementById('btn-ft-in');
+      const btnCm = document.getElementById('btn-cm');
+      const divFtIn = document.getElementById('div-ft-in');
+      const divCm = document.getElementById('div-cm');
+      const nextBtn = document.getElementById("div5_ft-btn");
+      let selectedUnit = 'ft-in'; // Default to ft-in
+
+      btnFtIn.addEventListener('click', function () {
+        selectedUnit = 'ft-in';
+        divFtIn.style.display = 'flex';
+        divCm.style.display = 'none';
+      });
+
+      btnCm.addEventListener('click', function () {
+        selectedUnit = 'cm';
+        divFtIn.style.display = 'none';
+        divCm.style.display = 'flex';
+      });
+
+      nextBtn.addEventListener("click", function () {
+         user_height;
+
+        if (selectedUnit === 'ft-in') {
+          const ft = document.getElementById('ft').value.trim();
+          const inch = document.getElementById('in').value.trim();
+          if (!ft || !inch) {
+            alert("Please fill your height in ft and inches.");
+            return;
+          }
+          const ftToCm = parseFloat(ft) * 30.48;
+          const inchToCm = parseFloat(inch) * 2.54;
+          const cm = Math.round(ftToCm + inchToCm); // Convert to int
+          user_height = cm;
+         } else {
+          const cm = document.getElementById('cm').value.trim();
+          if (!cm) {
+            alert("Please fill your height in cm.");
+            return;
+          }
+          user_height = parseInt(cm, 10);
+        }
+        console.log("User height:", user_height);
+        if (user_height) {
+          console.log(user_height);
+          document.getElementById("div_5").classList.remove("d-flex");
+          document.getElementById("div_6").classList.add("d-flex");
+        }
+      });
+    });
+    document.getElementById("div6_next_btn").addEventListener("click", function () {
+      if (!user_gender) {
+        alert("Please select your gender.");
+
+        return;
+      }
+      console.log("Selected gender:", user_gender);
+      document.getElementById("div_6").classList.remove("d-flex");
+      document.getElementById("div_7").classList.add("d-flex");
+      // setTimeout(function () {
+      //   console.log("hii")
+      //   document.getElementById("div_7").classList.remove("d-flex");
+      //   document.getElementById("div_8").classList.add("d-flex");
+      // }, 6000);
+    });
+    document.getElementById("claim_gift_btn").addEventListener("click", function () {
+      document.getElementById("div_10").classList.remove("d-flex");
+      document.getElementById("div_11").classList.add("d-flex");
+    });
+    document.getElementById("want_more-btn").addEventListener("click", function () {
+      document.getElementById("div_11").classList.remove("d-flex");
+      document.getElementById("div_13").classList.add("d-flex");
+    });
+    document.getElementById("No_thanks").addEventListener("click", function () {
+      document.getElementById("div_11").classList.remove("d-flex");
+      document.getElementById("div_14").classList.add("d-flex");
+      setTimeout(function () {
+        document.getElementById("div_14").classList.remove("d-flex");
+        document.getElementById("div_2").style.display = "flex";
+        window.location.reload();
+        vitalReport
+      }, 10000);
+    });
+    document.getElementById("feedback").addEventListener("click", function () {
+      document.getElementById("div_13").classList.remove("d-flex");
+      document.getElementById("div_14").classList.add("d-flex");
+      setTimeout(function () {
+        document.getElementById("div_14").classList.remove("d-flex");
+        document.getElementById("div_2").style.display = "flex";
+      }, 7000);
+    });
+    function selectGender(gender) {
+      const genderOptions = document.querySelectorAll('.gender-option');
+      genderOptions.forEach(option => {
+        option.classList.remove('selected');
+        option.querySelector('.checkmark').style.display = 'none';
+      });
+      const selectedOption = document.getElementById(gender);
+      selectedOption.classList.add('selected');
+      selectedOption.querySelector('.checkmark').style.display = 'block';
+      if (gender === 'male') {
+        user_gender = 1;
+      } else if (gender === 'female') {
+        user_gender = 2;
+      }
+    }
+    function validateMobile(e) {
+      var tick = document.getElementById("tick");
+      var otpMessage = document.getElementById("otpMessage");
+      if (e.length == 10) {
+        tick.style.display = "block";
+        otpMessage.style.display = "block";
+      } else {
+        tick.style.display = "none";
+      }
+    }
+    function validateOtp(value) {
+      var userInputOtp = document.getElementById("inputOTP").value;
+      var otpAlert = document.getElementById("otpAlertMessage");
+      if (userInputOtp !== "2001") {
+        otpAlert.style.display = "block";
+      } else {
+        otpAlert.style.display = "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var formContainer = document.getElementById("delayedForm");
+      formContainer.style.display = "block";
+    });
+    function openModal() {
+      $('#exampleModal').modal('show');
+    }
+    // Declare scanId in the global scope
+    function randomScanId() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < 5; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return result;
+    }
+    function makeWebAppUrl() {
+      scanId = randomScanId();
+      const iframe = document.getElementById('iframe_Scanner');
+      iframe.src = `https://fedo.ai/products/vitals/webapp/vitals?orgId=50&custId=1122&userId=837&tenantId=163&clientId=virtubox&scanId=${scanId}`;
+      console.log('Generated Scan ID:', scanId); // For debugging purposes
+      iframe.onload = function () {
+        console.log('Iframe fully loaded');
+        setTimeout(() => {
+          fetchData(scanId);
+          intervalId = setInterval(() => fetchData(scanId), 2000);
+        }, 22000);
+      };
+    }
+
+  var myHeaders = new Headers();
+  myHeaders.append("x-api-key", "ZXh1uO/9E9kaXROInikNVV+lJCRCFZnoweeFirtWtVKAN10S/MZcZRNSCHsYWXFTHm43b/V1NLTxX4t5LM8mJWRTnjsEye2sBk8BGMyd2pwR3QD5glMI2v76jmRao+S6ywpV/8XRNgzPAuMXm9ph5/ggMpbHay+iACnGsDe8FGuKkL6CGyEaqOdMLoBgcCUDs8G4QrowPuGK6jiFoMt+oLpDMGzjIRbsRuX8e2SFB3DGtOTgU7oBS7QUTKtR+9Xsmay/gSuLF75tIRTEb7H+R8DW2v8ZD40oaF3sBe4e1eABIfKb+VKEgfEORSoZXZYExvUH1HRGqh4wIgqYy3Qlr4wubMmdLBygTRSnatJGlfq2t4L4GjshF6ocuTaIiujeQncpK+nVOKOUN/PIyyUdaSnBpu+f9LOC9QbT9j84tIE5SrzH9dvlAckqofEmv5z+f90Pv0RefO/cBxRLz5i154QBcpmj3SCJzDtAQvR8dqmxQ4ajFKj5l3Z4ezL32ByjVNL6Uyqp0CRlrth8BUpI0SPzH74NDAmtnmgQhMoZb4qP4A1OahEJDPezXeWWggsKNaMSIYGfExQGHNyGhmnkvM4XhUYxTgZ5a8fWurhXXtmSNbaW+YfmoVndg6FSP28hX9eFJAPh0mCXMdpOgcPHR3ze76CXb4xjPUQQ0kv+DgKDuyDrAqj243dKGZY4zjNT/XKcktxL9123ecrIeJqZCFnlorwtssdeMFN6wbMF1qQNhNyrWd05v/+/oo0b4CP0dnxM8FO02w9P3R0bGVdQ3fBsEe1qgkr21DVB+Ijqb1FKQhHbTtgiiohgBFsAF2L6v2fyl8BcU5AigLUSTErMmzvz3x1/WkNq5C9KhMMKEXWmyWxAa1A+FUjv3mVttFEyZHBwm6bBUrem1NYUNw4tv+xBczmzdWZl2Rt/sr1bAHDpAgQ6kGNPnx4MR+3aU85+cwkCTYo/CZ+vAUPdJCSMQOPStqVd0S4fqLCLzWiTO+WxBNjYdD6eXBexJ6lHKYkGjB1omDJFiEyKmylpPTy5HvymsCczpczceocZire3Bfecxdx6iDANb6QcxjDx2pbNFjAMtKq0JrPyKYQofS8JrlxMzdfNhXbqDBv8hb5ME2cuWSKl0tgJW1GriC/0CP3n8Nln0MSi7m0ENxCW5ESKvutfcZ3YTLWxatfXRWglFEtXCua/hW1U73urfOB4AE2zU3exI6miJYIkAHp2Re4IZ7zw9ZNlDJNhO0GYW6KKZTBgGhnkS9gwWY9De2F2oQQ9LTViQTvzYKPO0BqL849slgZfOLB7L/U+maOef0d4olJVR9sbBf5PQZVHiu6ItoRBigHJzPMeg2nR7pMphWlwaQ==");
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+  function fetchData(scanId) {
+        vitalReport = '';
+        fetch(`https://fedo.ai/bridge/api/v1/vitals/status?cust-id=1122&scan-id=${scanId}`, requestOptions)
+          .then(response => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              throw new Error(`Unexpected status code: ${response.status}`);
+            }
+          })
+          .then(result => {
+            console.log("First API Response:", result.status);
+            if (result.status === 201) {
+              document.getElementById("div_3").style.display = "none";
+              document.getElementById("div_4").classList.add("d-flex");
+              clearInterval(intervalId);
+              setTimeout(() => {
+          fetchVitalData(scanId);
+          intervalId1 = setInterval(() => fetchVitalData(scanId), 2000);
+        }, 55000);
+            } else {
+
+            }
+          })
+          .catch(error => {
+            console.log('Error:', error);
+          });
+    }
+    function fetchVitalData() {
+      fetch(`https://fedo.ai/bridge/api/v1/vitals?cust-id=1122&scan-id=${scanId}`, requestOptions)
+        .then(response => { 
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            throw new Error(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(result => {
+          document.getElementById("div_7").classList.remove("d-flex");
+          document.getElementById("div_8").classList.add("d-flex");
+          if (result.statusCode === 404) {
+            console.log("not found");
+          } else {
+            clearInterval(intervalId1);
+            console.log("Second API Response:", result);
+            vitalReport = result;
+            console.log(vitalReport.customer_id);
+          // You should also define these variables somewhere in your code
+          console.log(user_name, user_age, user_gender, user_height, user_mobile);
+        }
+      })
+      .catch(error => console.log('Error:', error));
+    }
+    function submitForm() {
+      clearInterval(intervalId1);
+      user_name = document.getElementById('inputName').value.trim();
+      user_mobile = document.getElementById('inputMobile').value.trim();
+      if (!user_name || !user_mobile) {
+        alert("Please enter your name and mobile no.");
+        return;
+      }
+      user_mobile = '+91' + user_mobile;
+      document.getElementById("div_8").classList.remove("d-flex");
+        document.getElementById("div_9").classList.add("d-flex");
+        setTimeout(function () {
+          console.log("hii");
+          document.getElementById("div_9").classList.remove("d-flex");
+          document.getElementById("div_10").classList.add("d-flex");
+        }, 6000);
+      send(user_name, user_mobile);
+    }
+
+    function send(userName, userMobile) {
+      request_id = Math.floor((Math.random() * 100000) + 1);
+      const api = {};
+      api['command'] = "smart_scale";
+      const data = {}
+      const payload = {}
+      // payload['name'] = user_name;
+      payload['height'] = user_height;
+      payload['age'] = user_age;
+      payload['gender'] = user_gender;
+      payload['weightUnit'] = 0
+      data['request_id']=request_id;
+      data['payload']=payload;
+      
+      api['data'] = data;
+      getKioskResponse(JSON.stringify(api));
+    }
+    function getKioskResponse(data) {
+      console.log(data);
+      VirtuBox.execute("kiosk-response", data);
+      //  onKioskResponse("kiosk-response", data);
+    }
+
+  function onKioskResponse(command, data) {
+    trackData = JSON.parse(data);
+    try {
+       if (trackData.status === "success") {
+        console.log(trackData.status);
+        smart_scale_data = trackData.data;
+
+        updateCard(trackData);
+        document.getElementById("BMI").textContent = `${trackData.data.bmi} mg/dl`;
+        document.getElementById("weight").textContent = `${trackData.data.wtKg} kg`;
+        document.getElementById("body_fat").textContent = `${trackData.data.bfr} %`;
+        document.getElementById("mass_value").textContent = `${trackData.data.bm}`;
+        document.getElementById("metabolic_age").textContent = trackData.data.bodyAge;
+
+        updateCardHeader("weight_card_header", getWeightClass(trackData.data.wtKg), {
+          "Underweight": "bg-info",
+          "Normal weight": "bg-success",
+          "Overweight": "bg-warning",
+          "Obese": "bg-danger"
+        });
+        updateCardHeader("bmi_card_header", getBMIClass(trackData.data.bmi), {
+          "Thin": "bg-info",
+          "Standard": "bg-success",
+          "Overweight": "bg-warning",
+          "Obesity": "bg-danger"
+        });
+        updateCardHeader("body_fat_header", getBodyFatClass(trackData.data.bfr), {
+          "Underweight": "bg-info",
+          "Normal weight": "bg-success",
+          "Overweight": "bg-warning",
+          "Obese": "bg-danger"
+        });
+        updateCardHeader("muscle_mass_header", getMuscleMassClass(trackData.data.bm), {
+          "Underweight": "bg-info",
+          "Normal weight": "bg-success",
+          "Overweight": "bg-warning",
+          "Obese": "bg-danger"
+        });
+        updateCardHeader("metabolic_age_header", getMetabolicAgeClass(trackData.data.bodyAge), {
+          "Underweight": "bg-info",
+          "Normal weight": "bg-success",
+          "Overweight": "bg-warning",
+          "Obese": "bg-danger"
+        });
+
+        userDisplay(trackData);
+      } else {
+        showPopup("Error", "Data retrieval was unsuccessful. Please try again.");
+      }
+    } catch (e) {
+      console.error('Invalid JSON data:', e);
+      showPopup("Error", "There was an error processing the data. Please try again.");
+    }
+  }
+    
+    function userDisplay(trackData){
+      if (
+        (vitalReport === null || vitalReport === '' || vitalReport.length === 0) && 
+        (smart_scale_data === null, smart_scale_data ==='')
+      ) {
+        showPopup(404, "One or more times we couldn't detect your face. For the same reason we cannot extract accurate values.Please position yourself to the camera and try again.");
+        // document.getElementById("div_8").classList.remove('d-flex');
+        // document.getElementById("div_3").style.display = "block";
+        resetUserData();
+      } else {
+        console.log(smart_scale_data);
+        user = {
+          user_name: user_name,
+          user_mobile: user_mobile,
+          user_age: user_age,
+          user_height: user_height,
+          user_gender: user_gender
+        };
+        const weightColorValue = getWeightClass(smart_scale_data.wtKg);
+        const bmiColorValue = getBMIClass(smart_scale_data.bmi);
+        console.log(bmiColorValue);
+        const heartColorValue = getHeartRateClass(vitalReport.heart_rate);
+        const metabolicColorValue = getMetabolicAgeClass(smart_scale_data.bodyAge);
+        // const bloodPressureValue = vitalReport.systolic / vitalReport.diastolic;
+        var systolic = vitalReport.systolic;
+        var diastolic = vitalReport.diastolic;
+        const bloodPressureColorValue = getBloodPressureClass(systolic, diastolic);
+        console.log(bloodPressureColorValue);
+        const stressColorValue = vitalReport.stress;
+        const bodyFatColorValue = getBodyFatClass(smart_scale_data.bfr);
+        const metabolicAgeColorValue = getMetabolicAgeClass(smart_scale_data.bodyAge);
+        const muscleMassColorValue = getMuscleMassClass(smart_scale_data.bm);
+        display_data = {
+          "weight":{
+            "value":smart_scale_data.wtKg, "color":getColorCode(weightColorValue)
+          },
+          "bmi":{
+           "value":smart_scale_data.bmi, "color":getColorCode(bmiColorValue)
+          },
+          "body_fat":{
+            "value": smart_scale_data.bfr, "color": getColorCode(bodyFatColorValue)
+          },
+          "bone_mass":{
+            "value": smart_scale_data.bm, "color": getColorCode(muscleMassColorValue)
+          }, 
+          "metabolic_age":{
+            "value": smart_scale_data.bodyAge, "color": getColorCode(metabolicAgeColorValue)
+          },
+          "systolic" :{
+            "value": vitalReport.systolic, "color": getColorCode(bloodPressureColorValue)
+          },
+          "diastolic" :{
+            "value":vitalReport.diastolic, "color": getColorCode(bloodPressureColorValue)
+          },
+          "stress_level":{
+            "value":vitalReport.stress, "color": getColorCode(stressColorValue)
+          },
+          "heart_rate":{
+            "value": vitalReport.heart_rate, "color": getColorCode(heartColorValue),
+          },
+          "respiration": {
+            "value": vitalReport.respiration, "color": getColorBasedOnValue('respiration', vitalReport.respiration)
+          },
+          "spo2": {
+            "value": vitalReport.spo2, "color": getColorBasedOnValue('spo2', vitalReport.spo2)
+          },
+          "hrv": {
+            "value": vitalReport.hrv, "color": getColorBasedOnValue('hrv', vitalReport.hrv)
+          },
+          "bmr": {
+            "value": smart_scale_data.bmr, "color": getColorBasedOnValue('bmr', smart_scale_data.bmr)
+          },
+          "pp": {
+            "value": smart_scale_data.pp, "color": getColorBasedOnValue('pp', smart_scale_data.pp)
+          },
+          "rom": {
+            "value": smart_scale_data.rom, "color": getColorBasedOnValue('rom', smart_scale_data.rom)
+          },
+          "sfr": {
+            "value": smart_scale_data.sfr, "color": getColorBasedOnValue('sfr', smart_scale_data.sfr)
+          },
+          "uv": {
+            "value": smart_scale_data.uvi, "color": getColorBasedOnValue('uv', smart_scale_data.uvi)
+          },
+          "vwc": {
+            "value": smart_scale_data.vwc, "color": getColorBasedOnValue('vwc', smart_scale_data.vwc)
+          }
+        };
+        console.log(display_data);
+         VirtuBoxScriptResponse({
+           user: user,
+           fedo: vitalReport,
+           smart_scale: smart_scale_data,
+           display: display_data
+         });
+         var systolic = vitalReport.systolic;
+         var diastolic = vitalReport.diastolic;
+         var bloodPressureRatio = systolic / diastolic;
+         // document.getElementById("user_name_2").textContent = user_name;
+         document.getElementById("stress_level").textContent = vitalReport.stress;
+         document.getElementById("heart_rate_value").textContent = `${vitalReport.heart_rate} bpm`;
+         document.getElementById("rdm_blood-sugar").textContent = `${systolic} / ${diastolic}`;
+        updateCardHeader("heart_rate_card_header", getHeartRateClass(vitalReport.heart_rate), {
+          "Low": "bg-info",
+          "Normal": "bg-success",
+          "Elevated": "bg-warning",
+          "High": "bg-danger"
+        })
+        updateCardHeader("blood_pressure_card_header", getBloodPressureClass(systolic, diastolic),{
+          "Low": "bg-info",
+          "Normal": "bg-success",
+          "Elevated": "bg-warning",
+          "High": "bg-danger"
+        })
+        updateCardHeader("stress_card_header", vitalReport.stress, {
+          "Low": "bg-info",
+          "High": "bg-danger",
+          "Medium": "bg-warning"
+        });
+        document.getElementById("div_8").classList.remove("d-flex");
+        document.getElementById("div_9").classList.add("d-flex");
+        setTimeout(function () {
+          console.log("hii");
+          document.getElementById("div_9").classList.remove("d-flex");
+          document.getElementById("div_10").classList.add("d-flex");
+        }, 6000);
+      }
+    }
+    function updateCard() {
+      console.log(trackData);
+      console.log(vitalReport.heart_rate);
+      console.log(vitalReport.diastolic);
+      let stress = vitalReport.stress;
+      function getStressValue(stress) {
+        console.log(stress);
+        console.log(typeof stress);
+        switch (stress) {
+            case 'Low':
+                return 12.5;
+            case 'Mild':
+                return 37.5;
+            case 'Moderate':
+                return 62.5;
+            case 'High':
+                return 87.5;
+            default:
+                return 0;
+        }
+      }
+
+     let stressValue = getStressValue(stress);
+     stressCardEl.dataset.value = stressValue;
+     var heart_rate = vitalReport.heart_rate;
+     function getHeartRateValue(heart_rate) {
+         if (heart_rate < 50) {
+             return 12.5;
+         }
+         if (heart_rate >= 61 && heart_rate <= 100) {
+             return 37.5;
+         }
+         if (heart_rate >= 101 && heart_rate <= 110) {
+             return 62.5;
+         }
+         return 87.5;
+     }
+      heartRateCardEl.dataset.value = getHeartRateValue(heart_rate);
+      // var bloodPressureRatio = vitalReport.diastolic / vitalReport.systolic;
+      var systolic = vitalReport.systolic;
+      var diastolic = vitalReport.diastolic;
+      // var bloodPressureRatio = systolic / diastolic;
+      function getBloodPressureValue(systolic, diastolic) {
+          if (systolic >= 90 && systolic <= 124 && diastolic >= 61 && diastolic <= 80) {
+              return 12.5;
+          }
+          if (systolic >= 125 && systolic <= 139 && diastolic >= 81 && diastolic <= 89) {
+              return 37.5;
+          }
+          if (systolic >= 140 && systolic <= 159 && diastolic >= 90 && diastolic <= 99) {
+              return 62.5;
+          }
+          if (systolic >= 160 && systolic <= 179 && diastolic >= 100 && diastolic <= 109) {
+              return 87.5;
+          }
+          if (systolic >= 180 && diastolic >= 110) {
+              return 100;
+          }
+          return 0;
+      }
+      rbsCardEl.dataset.value = getBloodPressureValue(systolic, diastolic);
+      let weight = trackData.data.wtKg;
+        function getWeightClassValue(weight) {
+            if (weight < 50) return 12.5; 
+            if (weight >= 50 && weight < 70) return 37.5; 
+            if (weight >= 70 && weight < 90) return 62.5; 
+            return 87.5; 
+        }
+        let weightClassValue = getWeightClassValue(weight);
+        weightCardEl.dataset.value = weightClassValue;
+        let bmi = trackData.data.bmi;
+        function getBMIClassValue(bmi) {
+          if (bmi < 18.5) return 12.5; 
+          if (bmi >= 18.5 && bmi < 24.9) return 37.5; 
+          if (bmi >= 25 && bmi < 29.9) return 62.5;
+          return 87.5; 
+        }
+      let bmiClassValue = getBMIClassValue(bmi);
+      bmiCardEl.dataset.value = bmiClassValue;
+      let boneMass = trackData.data.bm;
+      function getBoneMassValue(boneMass) {
+        if (boneMass < 2.4) {
+            return 12.5; // Low
+        }
+        if ((boneMass >= 2.4 && boneMass <= 2.6) || 
+            (boneMass >= 2.8 && boneMass <= 3.0) || 
+            (boneMass >= 3.1 && boneMass <= 3.3)) {
+            return 25; // Ideal
+        }
+        if (boneMass > 2.6 || boneMass > 3.0 || boneMass > 3.3) {
+            return 37.5; // Excellent
+        }
+        return 0;
+      }
+      boneMassCardEl.dataset.value = getBoneMassValue(boneMass);
+      bodyFatCardEl.dataset.value = trackData.data.bfr;
+      metabolicAgeCard.dataset.value = trackData.data.bodyAge;
+      document.querySelectorAll('.report_card').forEach(report_card => {
+          const value = parseFloat(report_card.getAttribute('data-value'));
+          const indicator = report_card.getElementsByClassName('indicator')[0];
+          const percentage = value / 100 * 100 + '%';
+          indicator.style.left = percentage;
+      });
+    }
+  function resetUserData() {
+    console.log("before null", user_age);
+    document.getElementById('age').value = null;
+    document.getElementById('ft').value = null;
+    document.getElementById('in').value = null;
+    document.getElementById('cm').value = null;
+    document.getElementById('inputName').value = '';
+    document.getElementById('inputMobile').value = null;
+    const genderOptions = document.querySelectorAll('.gender-option');
+    genderOptions.forEach(option => {
+      option.classList.remove('selected');
+      option.querySelector('.checkmark').style.display = 'none';
+    });
+     user_age = null;
+     user_height = null;
+     user_gender = '';
+     user_name = '';
+     user_mobile = null;
+  }
+  function updateCardHeader(className, status, statusClasses) {
+      const header = document.getElementsByClassName(className)[0];
+      const classNameToAdd = statusClasses[status] || "bg-warning";
+      header.classList.add(classNameToAdd);
+  }
+  function getWeightClass(weight) {
+    if (weight < 50) return "Underweight";
+    if (weight >= 50 && weight < 70) return "Normal weight";
+    if (weight >= 70 && weight < 90) return "Overweight";
+    return "Obese";
+  }
+  function getBMIClass(bmi) {
+    if (bmi < 18.5) return "Thin";
+    if (bmi >= 18.5 && bmi < 24.9) return "Standard";
+    if (bmi >= 25 && bmi < 29.9) return "Overweight";
+    return "Obesity";
+  }
+  function getBodyFatClass(body_fat) {
+    if (body_fat < 21) return "Underweight";
+    if (body_fat >= 21 && body_fat < 32) return "Normal weight";
+    if (body_fat >= 32 && body_fat < 39) return "Overweight";
+    return "Obese";
+  }
+  function getMuscleMassClass(muscle_mass) {
+    if (muscle_mass < 18.5) return "Underweight";
+    if (muscle_mass >= 18.5 && muscle_mass < 24.9) return "Normal weight";
+    if (muscle_mass >= 25 && muscle_mass < 29.9) return "Overweight";
+    return "Obese";
+  }
+    
+  function getMetabolicAgeClass(metabolic_age) {
+    if (metabolic_age < 18.5) return "Underweight";
+    if (metabolic_age >= 18.5 && metabolic_age < 24.9) return "Normal weight";
+    if (metabolic_age >= 25 && metabolic_age < 29.9) return "Overweight";
+    return "Obese";
+  }
+  function getHeartRateClass(heartRate) {
+    if (heartRate < 60) return "Low";
+    if (heartRate >= 61 && heartRate <= 100) return "Normal";
+    if(heartRate >= 101 && heartRate <= 110) return "Elevated";
+    return "High";
+  }
+  function getBloodPressureClass(systolic, diastolic) {
+    if (systolic >= 90 && systolic <= 124 && diastolic >= 61 && diastolic <= 80) {
+        return "Low";
+    }
+    if (systolic >= 125 && systolic <= 139 && diastolic >= 81 && diastolic <= 89) {
+        return "Normal";
+    }
+    if (systolic >= 140 && systolic <= 159 && diastolic >= 90 && diastolic <= 99) {
+        return "Elevated";
+    }
+    if (systolic >= 160 && systolic <= 179 && diastolic >= 100 && diastolic <= 109) {
+        return "High";
+    }
+    if (systolic >= 180 && diastolic >= 110) {
+        return "High";
+    }
+    return "Low";
+  }
+  function getColorBasedOnValue(type, value) {
+    const colorMappings = {
+      "respiration": {
+        "Low":"#ffc107",
+        "Normal":  "#28a745",
+        "Elevated": "#17a2b8",
+        "High":"#dc3545",
+      },
+      "spo2": {
+        "Low": "#ffc107",
+        "Normal": "#28a745",
+        "High": "#dc3545",
+      },
+      "hrv": {
+        "Low":"#ffc107",
+        "Normal":  "#28a745",
+        "Elevated": "#17a2b8",
+        "High":"#dc3545",
+      },
+      "bmr": {
+        "Low": "#17a2b8",
+        "Normal": "#28a745",
+        "High": "#dc3545"
+      },
+      "pp": {
+        "Low": "#dc3545",
+        "ideal": "#ffc107",
+        "Excellent": "#28a745",
+      },
+      "rom": {
+        "Low":"#ffc107",
+        "Normal":  "#28a745",
+        "Elevated": "#17a2b8",
+        "High":"#dc3545",
+      },
+      "sfr": {
+        "Low": "#17a2b8",
+        "ideal": "#28a745",
+        "High": "#dc3545",
+      },
+      "uv": {
+        "Low": "#17a2b8",
+        "Normal": "#dc3545",
+        "High": "#ffc107"
+      },
+      "vwc": {
+        "Low": "#dc3545",
+        "Normal": "#ffc107",
+        "High": "#17a2b8"
+      }
+    };
+
+    switch(type) {
+      case 'respiration':
+        if (value < 12) return colorMappings[type].Low;
+        else if (value <= 20) return colorMappings[type].Normal;
+        else if (value <= 25) return colorMappings[type].Elevated;
+        else return colorMappings[type].High;
+
+      case 'spo2':
+        if (value < 90) return colorMappings[type].Low;
+        else if (value <= 95) return colorMappings[type].Normal;
+        else return colorMappings[type].High;
+
+      case 'hrv':
+      if (value < 12) return colorMappings[type].Low;
+      else if (value <= 20) return colorMappings[type].Normal;
+      else if (value <= 25) return colorMappings[type].Elevated;
+      else return colorMappings[type].High;
+
+      case 'bmr':
+        if (value < 1200) return colorMappings[type].Low;
+        else if (value <= 1800) return colorMappings[type].Normal;
+        else return colorMappings[type].High;
+
+      case 'pp':
+        if (value < 30) return colorMappings[type].Low;
+        else if (value <= 50) return colorMappings[type].ideal;
+        else return colorMappings[type].Excellent
+        ;
+
+        case 'rom':
+        if (value < 31) return colorMappings[type].Low;
+        else if (value <= 60) return colorMappings[type].Normal;
+        else if (value <= 90) return colorMappings[type].Elevated;
+        else return colorMappings[type].High;
+
+      case 'sfr':
+        if (value < 7) return colorMappings[type].Low;
+        else if (value >= 7 && value<15 ) return colorMappings[type].ideal;
+        else return colorMappings[type].High;
+
+      case 'uv':
+        if (value < 3) return colorMappings[type].Low;
+        else if (value <= 6) return colorMappings[type].Normal;
+        else return colorMappings[type].High;
+
+      case 'vwc':
+        if (value < 50) return colorMappings[type].Low;
+        else if (value <= 65) return colorMappings[type].Normal;
+        else return colorMappings[type].High;
+
+      default:
+        return "#000000"; // Default to black if type is unknown
+    }
+  }
+  function showPopup(statusCode, message) {
+    console.log(message);
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById("modal-body");
+    const modalBodyContent = document.getElementById("model-body-content");
+    const closeModalButton = document.getElementById("close-modal-button");
+    modalBodyContent.innerHTML = message;
+    modal.style.display = 'block';
+    closeModalButton.onclick = function() {
+    modal.style.display = 'none';
+    document.getElementById("div_8").classList.remove('d-flex');
+    document.getElementById("div_2").style.display = "flex";
+    }
+  }
+  function VirtuBoxScriptResponse(json) {
+    console.log("virtubox  response capture");
+    var command = "script-response";
+    try {
+      VirtuBox.execute(
+        command,
+        JSON.stringify(json)
+      );
+    } catch (err) { }
+  }
+  $(document).ready(function () {
+    var steps = 10;
+    var stepDuration = 1000; // duration of each step in milliseconds
+    function animateStep(progressBar, currentStep) {
+      if (currentStep < steps) {
+        var percent = (currentStep + 1) / steps;
+        progressBar.style.strokeDashoffset = 296 - (296 * percent);
+        setTimeout(function () {
+          animateStep(progressBar, currentStep + 1);
+        }, stepDuration);
+      }
+    }
+    $('.dashed-circle-progress').each(function (index) {
+      var uniqueId = 'circle_mask_' + index;
+      var $svg = $(this).find('svg');
+      $svg.find('.circle-mask').attr('id', uniqueId);
+      $svg.find('g').attr('mask', 'url(#' + uniqueId + ')');
+      var progressBar = $(this).find('.bar')[0];
+      if (progressBar) {
+        animateStep(progressBar, 0);
+      } else {
+        console.error("Progress bar element not found.");
+      }
+    });
+  });
+
+  $(document).ready(function () {
+    $('.carousel').carousel();
+  });
+  </script>
+</body>
+
+</html>
